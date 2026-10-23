@@ -1,0 +1,1 @@
+Home Drawn website. Open index.html. All 16 gallery drawings are embedded by direct file references. Background.JPG is the Home section background. Video file.MP4 is the video. Map.png is the map. Upload all files together for hosting. No JavaScript is needed.
