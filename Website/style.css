@@ -1,0 +1,164 @@
+/* Defines the site's reusable palette, font choices, and shared layout measurements. */
+:root { /* Starts the global custom-property block so these values can be reused throughout the stylesheet. */
+  --yellow: #f8e8a0; /* Sets the main pastel yellow used for the project's warm visual identity. */
+  --yellow-soft: #fff8d9; /* Sets a very pale yellow for the Home background. */
+  --pink: #f6dce3; /* Adds a soft pink accent without making the site look childish. */
+  --blue: #dcecf6; /* Adds a pale blue accent for the About section. */
+  --paper: #fffdf7; /* Uses warm white rather than harsh pure white for the main page background. */
+  --ink: #20201d; /* Sets near-black text for strong contrast and readability. */
+  --muted: #62615a; /* Sets a softer colour for captions and secondary information. */
+  --line: rgba(32, 32, 29, 0.14); /* Defines a subtle border colour for cards and separators. */
+  --hand: "Kalam", "Comic Sans MS", cursive; /* Uses a restrained handwritten typeface for selected headings and accents. */
+  --body: "DM Sans", Arial, sans-serif; /* Uses a clean sans-serif typeface for readable body text. */
+  --header-height: 76px; /* Stores the navigation height so layout offsets remain consistent. */
+} /* Ends the global custom-property block. */
+* { box-sizing: border-box; } /* Includes padding and borders in declared element dimensions to make sizing predictable. */
+html { scroll-behavior: smooth; scroll-padding-top: var(--header-height); } /* Smooths navigation scrolling and offsets section targets below the fixed header. */
+body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--body); } /* Removes the browser's default page margin and sets base text and background styling. */
+a { color: inherit; } /* Makes links inherit the surrounding text colour unless another rule overrides it. */
+.site-header { position: fixed; z-index: 20; inset: 0 0 auto; height: var(--header-height); display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 0 clamp(20px, 5vw, 76px); background: rgba(255, 253, 247, 0.94); border-bottom: 1px solid var(--line); backdrop-filter: blur(12px); } /* Pins navigation to the top, aligns its contents, and gives it a softly translucent warm-white surface. */
+.brand { text-decoration: none; font-family: var(--hand); font-size: clamp(1.25rem, 2vw, 1.7rem); font-weight: 700; letter-spacing: -0.04em; white-space: nowrap; } /* Styles the project wordmark with a professional hand-lettered accent and prevents it wrapping. */
+.brand span { display: inline-block; padding: 2px 8px; background: var(--yellow); border-radius: 7px 14px 8px 12px; transform: rotate(-2deg); } /* Highlights “Drawn” with a slightly irregular shape inspired by handmade artwork. */
+.main-nav { display: flex; align-items: center; gap: clamp(16px, 3vw, 38px); } /* Arranges navigation links in a row and adjusts the gaps for different screen widths. */
+.main-nav a { text-decoration: none; font-size: 0.95rem; font-weight: 600; padding: 8px 0; border-bottom: 2px solid transparent; } /* Removes default underlines and reserves space for a hover or keyboard-focus indicator. */
+.main-nav a:hover, .main-nav a:focus-visible { border-bottom-color: var(--ink); outline: none; } /* Underlines the active interaction target so mouse and keyboard users can identify it. */
+main { padding-top: var(--header-height); } /* Offsets the content beneath the fixed navigation so the header does not cover the Home section. */
+.page-section { position: relative; min-height: calc(100svh - var(--header-height)); scroll-margin-top: var(--header-height); padding: clamp(30px, 5vh, 60px) clamp(20px, 7vw, 100px); display: flex; flex-direction: column; justify-content: center; overflow: hidden; } /* Gives each section at least one viewport of height below the header, while allowing longer content to expand naturally. */
+.home-section { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); align-items: center; gap: clamp(28px, 5vw, 72px); background: var(--yellow-soft); padding-top: clamp(30px, 4vh, 48px); padding-bottom: clamp(30px, 4vh, 48px); } /* Places the title and video side by side on the first screen and gives the video slightly more width. */
+.home-section::before { content: ""; position: absolute; width: 280px; height: 280px; left: -100px; bottom: -140px; border-radius: 50%; background: var(--pink); opacity: 0.55; } /* Adds a soft decorative pastel circle behind the content without blocking interaction. */
+.home-copy, .home-video-wrap { position: relative; z-index: 1; min-width: 0; } /* Keeps the main content above the decoration and allows grid columns to shrink without overflowing. */
+.eyebrow { margin: 0 0 14px; font-size: 0.76rem; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: var(--muted); } /* Styles small section labels to create hierarchy without making them compete with headings. */
+h1, h2, p { margin-top: 0; } /* Removes default top margins so component spacing can be controlled deliberately. */
+h1 { max-width: 720px; margin-bottom: 22px; font-size: clamp(2.6rem, 5.5vw, 5.8rem); line-height: 0.98; letter-spacing: -0.065em; font-weight: 700; } /* Makes the main title bold and responsive, with compact line spacing for a strong first impression. */
+h1 span { display: inline-block; margin-top: 0.12em; font-family: var(--hand); font-size: 0.74em; font-weight: 400; line-height: 1.1; letter-spacing: -0.045em; } /* Gives the second line a handwritten character while keeping the title readable and polished. */
+.home-intro { max-width: 460px; margin-bottom: 26px; color: #45443e; font-size: clamp(1rem, 1.25vw, 1.2rem); line-height: 1.7; } /* Limits paragraph width and provides comfortable reading size and line spacing. */
+.text-link { display: inline-flex; align-items: center; gap: 12px; padding: 11px 0; text-decoration: none; border-bottom: 1px solid var(--ink); font-weight: 700; } /* Creates a lightweight text call-to-action with a clear visual underline. */
+.text-link span { font-size: 1.2rem; } /* Makes the downward arrow slightly larger than the surrounding link text. */
+.home-video-wrap { width: 100%; max-width: 860px; justify-self: end; } /* Lets the video fill its grid column while limiting its maximum width on very large displays. */
+.project-video { display: block; width: 100%; aspect-ratio: 16 / 9; max-height: min(62vh, 620px); object-fit: contain; background: #f1e7bd; border: 8px solid #fff; border-radius: 18px; box-shadow: 0 18px 50px rgba(58, 48, 18, 0.13); } /* Keeps the player widescreen and responsive, with a white frame and gentle shadow. */
+.video-caption { margin: 12px 4px 0; font-family: var(--hand); font-size: 1rem; color: var(--muted); } /* Adds a small hand-lettered caption below the video. */
+.section-note { position: absolute; right: clamp(20px, 3vw, 42px); bottom: 22px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.15em; color: rgba(32, 32, 29, 0.55); } /* Places a quiet section number in the bottom corner of each section. */
+.gallery-section { background: var(--paper); } /* Keeps the gallery background warm white so the children's drawings remain the visual focus. */
+.section-heading { margin: 0 auto 22px; width: min(100%, 1050px); text-align: center; } /* Centres section headings and limits their width for a balanced appearance. */
+.section-heading h2, .about-content h2 { margin-bottom: 10px; font-size: clamp(2rem, 4vw, 3.6rem); line-height: 1.05; letter-spacing: -0.05em; } /* Gives section titles a consistent responsive size and compact line spacing. */
+.section-heading > p:last-child { margin-bottom: 0; color: var(--muted); line-height: 1.6; } /* Styles the instruction beneath each section heading as secondary information. */
+.gallery-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(10px, 1.5vw, 18px); width: min(100%, 1120px); margin: 0 auto; } /* Arranges sixteen drawings into four equal columns on larger screens. */
+.gallery-item { position: relative; display: grid; place-items: center; min-width: 0; aspect-ratio: 1 / 1; padding: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: #fff; cursor: zoom-in; transition: transform 180ms ease, box-shadow 180ms ease; } /* Creates uniform square clickable image slots with rounded edges and a zoom cursor. */
+.gallery-item:hover, .gallery-item:focus-visible { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(32, 32, 29, 0.12); outline: 2px solid var(--yellow); outline-offset: 2px; } /* Adds a gentle hover lift and a visible keyboard focus outline. */
+.gallery-item img { width: 100%; height: 100%; object-fit: contain; padding: 5px; } /* Shows the complete drawing without cropping and leaves a small inner margin. */
+.gallery-placeholder { display: grid; place-items: center; gap: 8px; width: 100%; height: 100%; padding: 10px; background: linear-gradient(145deg, #fffdf7, #f8efc9); color: var(--muted); } /* Shows a warm, unobtrusive placeholder when a numbered drawing has not been added. */
+.gallery-placeholder strong { font-family: var(--hand); font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 400; color: var(--ink); } /* Displays each placeholder number in the hand-lettered accent font. */
+.gallery-placeholder span { font-size: 0.72rem; text-align: center; } /* Keeps the placeholder guidance small enough to fit inside a square. */
+.map-section { background: #f6f4ed; } /* Uses a light neutral background so the map's white rim does not contrast too sharply. */
+.map-heading { margin-bottom: 24px; } /* Separates the map title and description from the map image. */
+.map-frame { display: grid; place-items: center; width: min(100%, 1150px); height: min(60vh, 620px); min-height: 250px; margin: 0 auto; padding: clamp(12px, 2vw, 24px); background: #fff; border: 1px solid #eeeae0; border-radius: 16px; box-shadow: 0 12px 36px rgba(32, 32, 29, 0.06); } /* Frames the map with white padding and a subtle border that blends with the map's white edge. */
+.map-image { display: block; width: 100%; height: 100%; object-fit: contain; } /* Fits the entire map inside the frame without cropping its edges. */
+.asset-notice { margin: 0; max-width: 520px; text-align: center; color: var(--muted); line-height: 1.6; } /* Styles the helpful message shown when the Map.jpg file is missing. */
+.about-section { background: var(--blue); } /* Uses pale blue to distinguish the About section while retaining the pastel palette. */
+.about-content { width: min(100%, 940px); margin: 0 auto; } /* Limits the long project description to a comfortable reading width. */
+.about-content h2 { margin-bottom: 24px; } /* Adds space below the About heading before the main copy begins. */
+.about-content > p:not(.eyebrow):not(.credits) { margin-bottom: 18px; font-size: clamp(0.92rem, 1.1vw, 1.04rem); line-height: 1.75; } /* Gives both project paragraphs readable type size and generous line spacing. */
+.credits { margin: 30px 0 0; font-size: 0.78rem; font-style: italic; color: #4d4c47; } /* Makes the creator list smaller and italic as requested. */
+.site-footer { padding: 22px clamp(20px, 7vw, 100px); background: var(--yellow); } /* Adds a pastel yellow footer that reinforces the main colour palette. */
+.site-footer p { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 0; font-size: 0.82rem; } /* Places the project name and demo year at opposite sides of the footer. */
+.site-footer span { font-size: 0.78rem; } /* Makes the demo-year label slightly smaller than the project name. */
+.lightbox[hidden] { display: none; } /* Ensures the lightbox stays invisible until JavaScript removes the hidden attribute. */
+.lightbox { position: fixed; z-index: 50; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 60px 24px 24px; background: rgba(25, 25, 23, 0.9); } /* Covers the viewport with a dark overlay and centres the enlarged drawing. */
+.lightbox img { display: block; max-width: min(92vw, 1200px); max-height: 78vh; object-fit: contain; background: #fff; border-radius: 4px; } /* Fits the enlarged drawing within the viewport without distorting it. */
+.lightbox p { margin: 0; color: #fff; font-size: 0.9rem; } /* Shows the drawing caption in high-contrast text below the image. */
+.lightbox-close { position: absolute; top: 16px; right: 22px; width: 44px; height: 44px; border: 0; border-radius: 50%; background: #fff; color: var(--ink); font-size: 2rem; line-height: 1; cursor: pointer; } /* Creates a large, easy-to-find close button in the upper-right corner of the overlay. */
+.lightbox-close:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; } /* Makes the close button's keyboard focus clearly visible. */
+@media (max-width: 900px) { /* Applies tablet and smaller-laptop adjustments when the screen is narrower than 900 pixels. */
+  .home-section { grid-template-columns: 1fr; gap: 24px; align-content: center; } /* Stacks the Home text and video so neither becomes too narrow. */
+  .home-copy { max-width: 760px; } /* Stops the Home text block from stretching too wide on tablet screens. */
+  h1 { font-size: clamp(2.6rem, 8vw, 4.6rem); } /* Resizes the title to suit the narrower stacked layout. */
+  .home-video-wrap { max-width: 760px; justify-self: start; } /* Aligns the video with the text and limits its width. */
+  .project-video { max-height: 42vh; } /* Reduces video height so the Home section remains reasonably compact on tablets. */
+  .page-section { padding-top: 36px; padding-bottom: 42px; } /* Preserves breathing room while reducing oversized section padding. */
+} /* Ends tablet and small-laptop rules. */
+@media (max-width: 620px) { /* Applies phone-specific rules below 620 pixels wide. */
+  :root { --header-height: 68px; } /* Slightly reduces header height to preserve more vertical space on phones. */
+  .site-header { padding: 0 16px; gap: 12px; } /* Reduces navigation padding so the brand and links fit on narrow screens. */
+  .brand { font-size: 1.15rem; } /* Keeps the wordmark compact on phones. */
+  .main-nav { gap: 13px; } /* Tightens navigation spacing to prevent links from wrapping. */
+  .main-nav a { font-size: 0.82rem; } /* Slightly reduces navigation text size for small screens. */
+  .page-section { padding-left: 18px; padding-right: 18px; } /* Gives sections consistent narrow-screen side margins. */
+  .home-section { gap: 22px; } /* Keeps enough separation between title and video in the stacked Home layout. */
+  h1 { font-size: clamp(2.45rem, 12vw, 3.8rem); } /* Scales the title for phone screens without making it excessively large. */
+  .project-video { border-width: 5px; border-radius: 12px; max-height: 34vh; } /* Reduces the video frame thickness and height for phones. */
+  .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; } /* Displays the sixteen drawings in two columns on phones. */
+  .gallery-placeholder span { font-size: 0.65rem; } /* Keeps placeholder text from crowding small gallery slots. */
+  .map-frame { height: 48vh; min-height: 220px; padding: 10px; } /* Adjusts the map frame for the smaller phone viewport. */
+  .site-footer p { align-items: flex-start; flex-direction: column; gap: 6px; } /* Stacks footer labels vertically when there is not enough width. */
+  .section-note { bottom: 12px; } /* Moves the section marker slightly closer to the bottom edge on phones. */
+} /* Ends phone-specific rules. */
+@media (prefers-reduced-motion: reduce) { /* Respects visitors who request reduced motion in their device accessibility settings. */
+  html { scroll-behavior: auto; } /* Disables smooth scrolling for people who prefer reduced motion. */
+  *, *::before, *::after { transition-duration: 0.01ms !important; } /* Minimises decorative transitions for motion-sensitive visitors. */
+} /* Ends reduced-motion rules. */
+
+
+/* The child's drawing now covers the entire Home section rather than the video poster. */
+.home-section { background: linear-gradient(90deg, rgba(255,251,232,.91), rgba(255,253,246,.82)), url("Background.JPG") center center / cover no-repeat; }
+/* The video is an independent player with no drawing poster. */
+.project-video { background: #161616; }
+/* Gallery artwork is displayed as a clean editorial collection rather than clickable tiles. */
+.gallery-section { overflow: visible; padding-top: 70px; padding-bottom: 70px; }
+.gallery-grid { width: min(100%, 1220px); grid-template-columns: repeat(4,minmax(0,1fr)); gap: 22px; }
+.gallery-grid .gallery-item { display: flex; flex-direction: column; height: auto; aspect-ratio: auto; padding: 10px 10px 0; margin: 0; background: white; border: 1px solid #e7e2d7; border-radius: 4px; box-shadow: 0 8px 24px rgba(35,30,20,.065); cursor: default; overflow: hidden; transform: none; }
+.gallery-grid .gallery-item:hover, .gallery-grid .gallery-item:focus-visible { transform: none; box-shadow: 0 8px 24px rgba(35,30,20,.065); outline: none; }
+.gallery-grid .gallery-item img { display: block; width: 100%; height: 205px; object-fit: contain; padding: 0; background: #fff; }
+.gallery-grid .gallery-item figcaption { padding: 12px 3px; border-top: 1px solid #f0ede7; font-size: .76rem; font-weight: 600; letter-spacing: .06em; color: #555; }
+.map-source { width: min(100%,1150px); margin: 12px auto 0; font-size: .82rem; color: #555; text-align: left; }
+@media(max-width:800px) { .gallery-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; } .gallery-grid .gallery-item img { height: 190px; } }
+@media(max-width:480px) { .gallery-grid .gallery-item img { height: 145px; } .gallery-grid .gallery-item { padding: 6px 6px 0; } }
+
+/* The Home drawing remains visible through a lighter, semi-transparent overlay. */
+.home-section { background: linear-gradient(90deg, rgba(255,251,232,.62), rgba(255,253,246,.52)), url("Background.JPG") center center / cover no-repeat; } 
+/* Each artwork card ends at the image, with no captions or extra space. */
+.gallery-grid .gallery-item { padding: 10px; } 
+/* Keep the map and its source together within the available viewport height. */
+.map-section { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(8px, 1.3vh, 14px); min-height: 100svh; height: auto; overflow: hidden; padding-top: calc(var(--header-height) + 12px); padding-bottom: 24px; } 
+/* Allow the heading to shrink naturally without pushing the map outside its section. */
+.map-heading { flex: 0 0 auto; width: 100%; margin-bottom: 0; } 
+/* Size the image window to its contents, rather than forcing a crop-prone height. */
+.map-frame { box-sizing: border-box; flex: 0 1 auto; width: min(100%, 1100px); height: auto; min-height: 0; max-height: min(68svh, 760px); padding: 8px; overflow: hidden; } 
+/* Show every pixel of the new map, preserving its original proportions. */
+.map-image { display: block; width: 100%; height: auto; max-height: calc(min(68svh, 760px) - 16px); object-fit: contain; } 
+/* The source label remains directly below the map inside the same section. */
+.map-source { flex: 0 0 auto; width: min(100%, 1100px); margin: 0; } 
+@media (max-width: 700px) { /* Reduce the map height on smaller screens while retaining the entire image. */
+ .map-frame { max-height: 57svh; } /* Reserves vertical room for the map title and source. */
+ .map-image { max-height: calc(57svh - 16px); } /* Prevents the picture from overflowing its frame. */
+}
+
+/* The map frame now follows the image's own aspect ratio, removing side gaps. */
+.map-section .map-frame { width: min(100%, 1100px); height: auto; max-height: none; min-height: 0; padding: 0; display: block; overflow: hidden; border-radius: 8px; }
+.map-section .map-image { width: 100%; height: auto; max-height: none; display: block; object-fit: unset; }
+/* Phone layout: keep the same visual identity with comfortable, responsive sizing. */
+@media (max-width: 700px) {
+  .site-header { padding-left: 14px; padding-right: 14px; }
+  .brand { font-size: clamp(1rem, 4.2vw, 1.35rem); white-space: nowrap; }
+  .main-nav { gap: clamp(8px, 2.5vw, 18px); }
+  .main-nav a { font-size: clamp(.76rem, 3vw, .95rem); }
+  .page-section { min-height: calc(100svh - var(--header-height)); height: auto; overflow: visible; padding: 34px 18px 44px; }
+  .home-section { display: flex; flex-direction: column; justify-content: center; gap: 22px; }
+  .home-copy, .home-video-wrap { width: 100%; min-width: 0; }
+  .home-copy h1 { overflow-wrap: anywhere; }
+  .project-video { display: block; width: 100%; max-width: 100%; height: auto; aspect-ratio: 16 / 9; }
+  .gallery-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+  .gallery-grid .gallery-item { min-width: 0; padding: 7px; }
+  .gallery-grid .gallery-item img { width: 100%; height: 155px; object-fit: contain; }
+  .map-section { min-height: calc(100svh - var(--header-height)); height: auto; padding: 35px 18px 48px; overflow: visible; justify-content: center; }
+  .map-section .map-frame { width: 100%; max-height: none; height: auto; padding: 0; }
+  .map-section .map-image { width: 100%; max-height: none; height: auto; }
+  .map-source { width: 100%; font-size: .72rem; }
+  .about-content { width: 100%; max-width: 100%; }
+  .about-content p { overflow-wrap: break-word; }
+  .section-note { position: static; align-self: flex-end; margin-top: 12px; }
+}
+@media (max-width: 380px) {
+  .gallery-grid .gallery-item img { height: 125px; }
+  .main-nav { gap: 7px; }
+  .page-section { padding-left: 14px; padding-right: 14px; }
+}
